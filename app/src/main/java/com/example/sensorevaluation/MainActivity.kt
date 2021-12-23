@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity()  {
         binding.Start.setOnClickListener { startMeasurment() }
         binding.Stop.setOnClickListener { stopMeasurment() }
         binding.ShowData.setOnClickListener { showData() }
+        binding.ResetFile.setOnClickListener { reseteData() }
         serviceIntent = Intent(applicationContext, AccelerationService::class.java)
         lineChart = findViewById(R.id.lineChart)
         lineChart2 = findViewById(R.id.lineChart2)
@@ -55,7 +56,40 @@ class MainActivity : AppCompatActivity()  {
     private fun showData() {
         //list(fileNameAcc)
         //readFileLineByLineUsingForEachLine(fileNameAcc)
-        findTuples()
+        if (findData()){
+            findTuples()
+        }else{
+            Log.d("Main", "No data available.")
+        }
+
+    }
+
+    private fun reseteData() {
+
+        var fileExists = findData()
+        if (fileExists){
+            var nameArray = arrayOf(fileNameAcc_x, fileNameGyro_x)
+            for (i in nameArray){
+                var file = openFile(i)
+                file.delete()
+                Log.d("CheckOnFile", "Deleted")
+            }
+        }
+    }
+
+    private fun findData() : Boolean{
+        var fileExists : Boolean = false
+        var file : File
+        for (i in arrayOf(fileNameAcc_x, fileNameGyro_x) ) {
+            file = openFile(i)
+            fileExists = file.exists()
+        }
+        return fileExists
+    }
+
+    private fun openFile(name: String) : File{
+        var file = File("/data/user/0/com.example.sensorevaluation/files/" + "/" + name)
+        return file
     }
 
     private fun findTuples(){

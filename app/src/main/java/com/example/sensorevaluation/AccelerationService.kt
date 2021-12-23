@@ -96,8 +96,8 @@ class AccelerationService : Service(), SensorEventListener
         var file = File(path + "/" +acc_x_Name)
         var fileExists = file.exists()
         if (fileExists){
-            file.delete()
-            Log.d("CheckOnFile", "Deleted")
+            //file.delete()
+            Log.d("CheckOnFile", "Not yet deleted")
         }
     }
     @RequiresApi(Build.VERSION_CODES.O)
