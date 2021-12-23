@@ -37,6 +37,12 @@ class MainActivity : AppCompatActivity()  {
     private var index : Array<Int> = arrayOf(0)
     private lateinit var lineChart: LineChart
     private lateinit var lineChart2: LineChart
+    private lateinit var lineChartxacc: LineChart
+    private lateinit var lineChartyacc: LineChart
+    private lateinit var lineChartzacc: LineChart
+    private lateinit var lineChartxgyro: LineChart
+    private lateinit var lineChartygyro: LineChart
+    private lateinit var lineChartzgyro: LineChart
     private lateinit var linedatas : ArrayList<LineDataSet>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +57,12 @@ class MainActivity : AppCompatActivity()  {
         serviceIntent = Intent(applicationContext, AccelerationService::class.java)
         lineChart = findViewById(R.id.lineChart)
         lineChart2 = findViewById(R.id.lineChart2)
+        lineChartxacc = findViewById(R.id.lineChartxacc)
+        lineChartyacc = findViewById(R.id.lineChartyacc)
+        lineChartzacc = findViewById(R.id.lineChartzacc)
+        lineChartxgyro = findViewById(R.id.lineChartgyrox)
+        lineChartygyro = findViewById(R.id.lineChartgyroy)
+        lineChartzgyro = findViewById(R.id.lineChartgyroz)
     }
 
     private fun startMeasurment() {
@@ -186,6 +198,38 @@ class MainActivity : AppCompatActivity()  {
         lineChart2.data = data
         lineChart2.setBackgroundColor(resources.getColor(R.color.greishTrans))
         lineChart2.animateXY(3000, 3000)
+
+        data = LineData(linedatas.get(0))
+        lineChartxacc.data = data
+        lineChartxacc.setBackgroundColor(resources.getColor(R.color.greishTrans))
+        lineChartxacc.animateXY(3000, 3000)
+
+
+        data = LineData(linedatas.get(1))
+        lineChartyacc.data = data
+        lineChartyacc.setBackgroundColor(resources.getColor(R.color.greishTrans))
+        lineChartyacc.animateXY(3000, 3000)
+
+        data = LineData(linedatas.get(2))
+        lineChartzacc.data = data
+        lineChartzacc.setBackgroundColor(resources.getColor(R.color.greishTrans))
+        lineChartzacc.animateXY(3000, 3000)
+
+        data = LineData(linedatas.get(3))
+        lineChartxgyro.data = data
+        lineChartxgyro.setBackgroundColor(resources.getColor(R.color.greishTrans))
+        lineChartxgyro.animateXY(3000, 3000)
+
+        data = LineData(linedatas.get(4))
+        lineChartygyro.data = data
+        lineChartygyro.setBackgroundColor(resources.getColor(R.color.greishTrans))
+        lineChartygyro.animateXY(3000, 3000)
+
+        data = LineData(linedatas.get(5))
+        lineChartzgyro.data = data
+        lineChartzgyro.setBackgroundColor(resources.getColor(R.color.greishTrans))
+        lineChartzgyro.animateXY(3000, 3000)
+
     }
 
 

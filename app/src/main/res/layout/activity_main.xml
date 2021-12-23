@@ -68,13 +68,131 @@
 
 
                 <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="false"
+                    android:layout_marginTop="200dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/ic_launcher_fields"
+                    android:foreground="@color/greishTrans">
+
+                </com.github.mikephil.charting.charts.LineChart>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/lineChart2"
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="274dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/ic_launcher_fields"
+                    android:paddingTop="@dimen/cardview_default_radius"
+                    android:requiresFadingEdge="vertical">
+
+                </com.github.mikephil.charting.charts.LineChart>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChartxacc"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/ic_launcher_fields"
+                    android:paddingTop="@dimen/cardview_default_radius"
+                    android:requiresFadingEdge="vertical">
+
+                </com.github.mikephil.charting.charts.LineChart>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChartyacc"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/ic_launcher_fields"
+                    android:paddingTop="@dimen/cardview_default_radius"
+                    android:requiresFadingEdge="vertical">
+
+                </com.github.mikephil.charting.charts.LineChart>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChartzacc"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/ic_launcher_fields"
+                    android:paddingTop="@dimen/cardview_default_radius"
+                    android:requiresFadingEdge="vertical">
+
+                </com.github.mikephil.charting.charts.LineChart>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChartgyrox"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/ic_launcher_fields"
+                    android:paddingTop="@dimen/cardview_default_radius"
+                    android:requiresFadingEdge="vertical">
+
+                </com.github.mikephil.charting.charts.LineChart>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChartgyroy"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/ic_launcher_fields"
+                    android:paddingTop="@dimen/cardview_default_radius"
+                    android:requiresFadingEdge="vertical">
+
+                </com.github.mikephil.charting.charts.LineChart>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChartgyroz"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
                     android:background="@drawable/ic_launcher_fields"
                     android:paddingTop="@dimen/cardview_default_radius"
                     android:requiresFadingEdge="vertical">
@@ -82,18 +200,6 @@
                 </com.github.mikephil.charting.charts.LineChart>
             </RelativeLayout>
 
-                <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/lineChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentBottom="false"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="178dp"
-                    android:background="@drawable/ic_launcher_fields"
-                    android:foreground="@color/greishTrans">
-
-                </com.github.mikephil.charting.charts.LineChart>
 
         </LinearLayout>
     </ScrollView>
