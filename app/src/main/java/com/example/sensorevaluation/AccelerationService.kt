@@ -27,11 +27,11 @@ class AccelerationService : Service(), SensorEventListener
 
     //File Names
     private val acc_x_Name : String? = "acc_x.csv"
-    private val acc_y_Name : String? = "acc_y.txt"
-    private val acc_z_Name : String? = "acc_z.txt"
+    private val acc_y_Name : String? = "acc_y.csv"
+    private val acc_z_Name : String? = "acc_z.csv"
     private val gyro_x_Name : String? = "gyro_x.csv"
-    private val gyro_y_Name : String? = "gyro_y.txt"
-    private val gyro_z_Name : String? = "gyro_z.txt"
+    private val gyro_y_Name : String? = "gyro_y.csv"
+    private val gyro_z_Name : String? = "gyro_z.csv"
 
     //Files
     private lateinit var fileAcc_x: FileOutputStream
@@ -109,8 +109,8 @@ class AccelerationService : Service(), SensorEventListener
             fileGyro_z = openFileOutput(gyro_z_Name, Context.MODE_APPEND)
 
             fileGyro_x.write((event.values[0].toString() + ", " + current.toString()+ "; " ).toByteArray() )
-            fileGyro_y.write((" ;" + event.values[1].toString()).toByteArray())
-            fileGyro_z.write((" ;" + event.values[2].toString()).toByteArray())
+            fileGyro_y.write((event.values[1].toString() + ", " + current.toString()+ "; " ).toByteArray())
+            fileGyro_z.write((event.values[2].toString() + ", " + current.toString()+ "; " ).toByteArray())
             Log.d(TAG, "Gyro received.")
         }else if(event?.sensor?.type == Sensor.TYPE_ACCELEROMETER)
         {
@@ -123,8 +123,8 @@ class AccelerationService : Service(), SensorEventListener
 
 
             fileAcc_x.write((event.values[0].toString() + ", " + current.toString()+ "; " ).toByteArray() )
-            fileAcc_y.write((" ;" + event.values[1].toString()).toByteArray())
-            fileAcc_z.write((" ;" + event.values[2].toString()).toByteArray())
+            fileAcc_y.write((event.values[1].toString() + ", " + current.toString()+ "; " ).toByteArray())
+            fileAcc_z.write((event.values[2].toString() + ", " + current.toString()+ "; " ).toByteArray())
             //fileAcc.writeText("ACC " + event.values[0].toString())
         }
     }

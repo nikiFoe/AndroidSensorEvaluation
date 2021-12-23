@@ -24,12 +24,17 @@ class MainActivity : AppCompatActivity()  {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var serviceIntent: Intent
-    private val fileNameAcc_x: String = "acc_x.csv"
-    private val fileNameGyro_x: String = "gyro_x.csv"
+    private val acc_x_Name : String = "acc_x.csv"
+    private val acc_y_Name : String = "acc_y.csv"
+    private val acc_z_Name : String = "acc_z.csv"
+    private val gyro_x_Name : String = "gyro_x.csv"
+    private val gyro_y_Name : String = "gyro_y.csv"
+    private val gyro_z_Name : String = "gyro_z.csv"
     private lateinit var path : String
     private var index : Array<Int> = arrayOf(0)
     private lateinit var lineChart: LineChart
     private lateinit var lineChart2: LineChart
+    private lateinit var linedatas : ArrayList<LineDataSet>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +62,9 @@ class MainActivity : AppCompatActivity()  {
         //list(fileNameAcc)
         //readFileLineByLineUsingForEachLine(fileNameAcc)
         if (findData()){
+            linedatas = arrayListOf()
             findTuples()
+            plotData(1)
         }else{
             Log.d("Main", "No data available.")
         }
@@ -68,7 +75,7 @@ class MainActivity : AppCompatActivity()  {
 
         var fileExists = findData()
         if (fileExists){
-            var nameArray = arrayOf(fileNameAcc_x, fileNameGyro_x)
+            var nameArray = arrayOf(acc_x_Name, acc_y_Name, acc_z_Name, gyro_x_Name, gyro_y_Name, gyro_z_Name)
             for (i in nameArray){
                 var file = openFile(i)
                 file.delete()
@@ -80,7 +87,7 @@ class MainActivity : AppCompatActivity()  {
     private fun findData() : Boolean{
         var fileExists : Boolean = false
         var file : File
-        for (i in arrayOf(fileNameAcc_x, fileNameGyro_x) ) {
+        for (i in arrayOf(acc_x_Name, acc_y_Name, acc_z_Name, gyro_x_Name, gyro_y_Name, gyro_z_Name) ) {
             file = openFile(i)
             fileExists = file.exists()
         }
@@ -96,8 +103,8 @@ class MainActivity : AppCompatActivity()  {
         var csvContent : String
         var parts : List<String>
         var count = 0
-        arrayOf(fileNameAcc_x, fileNameGyro_x)
-        for (i in arrayOf(fileNameAcc_x, fileNameGyro_x) ){
+        arrayOf(acc_x_Name, acc_y_Name, acc_z_Name, gyro_x_Name, gyro_y_Name, gyro_z_Name)
+        for (i in arrayOf(acc_x_Name, acc_y_Name, acc_z_Name, gyro_x_Name, gyro_y_Name, gyro_z_Name) ){
             csvContent = File("/data/user/0/com.example.sensorevaluation/files/" + i).readText()
             parts = csvContent.split(";")
             setLineChartData(parts, count)
@@ -132,30 +139,49 @@ class MainActivity : AppCompatActivity()  {
             }
 
         }
-        var nameString = arrayOf("X-Accel.", "X-Gyro.")
+        var nameString = arrayOf("X-Accel.", "Y-Accel.","Z-Accel.","X-Gyro.","Y-Gyro.","Z-Gyro.")
         val linedataset = LineDataSet(lineentry, nameString[counts])
 
-        //val lineDataSet_x = LineDataSet(xvalue, "Second")
-        linedataset.color = resources.getColor(R.color.darkRed)
+        var colorselect = arrayOf(R.color.darkRed, R.color.black, R.color.grey)
+        if ((counts+1) % 3 == 0){
+            linedataset.color = resources.getColor(colorselect[2])
+        }else if((count+1) % 2 == 0){
+            linedataset.color = resources.getColor(colorselect[1])
+        }else{
+            linedataset.color = resources.getColor(colorselect[0])
+        }
+        //linedataset.color = resources.getColor(R.color.darkRed)
 
-        val data = LineData(linedataset)
-        if (counts == 0){
+
+        linedatas.add(linedataset)
+
+        """val data = LineData(linedataset)
+        if (counts < 3 ){
+
             lineChart.data = data
             lineChart.setBackgroundColor(resources.getColor(R.color.greishTrans))
             lineChart.extraRightOffset
             lineChart.animateXY(3000, 3000)
-        }else if(counts ==1){
+        }else if(counts >= 3){
             lineChart2.data = data
             lineChart2.setBackgroundColor(resources.getColor(R.color.greishTrans))
             lineChart2.animateXY(3000, 3000)
-        }
-
-
-
-
+        }"""
     }
 
+    private fun plotData(counts: Int){
+        var data = LineData(linedatas.get(0),linedatas.get(1), linedatas.get(2))
 
+        lineChart.data = data
+        lineChart.setBackgroundColor(resources.getColor(R.color.greishTrans))
+        lineChart.extraRightOffset
+        lineChart.animateXY(1000, 3000)
+
+        data = LineData(linedatas.get(3),linedatas.get(4), linedatas.get(5))
+        lineChart2.data = data
+        lineChart2.setBackgroundColor(resources.getColor(R.color.greishTrans))
+        lineChart2.animateXY(3000, 3000)
+    }
 
 
     fun readFileLineByLineUsingForEachLine(fileName: String)
