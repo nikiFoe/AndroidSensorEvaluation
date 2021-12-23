@@ -10,12 +10,15 @@ import android.util.Size
 import android.view.Gravity.apply
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.example.sensorevaluation.R.color.abc_primary_text_disable_only_material_dark
 import com.example.sensorevaluation.R.color.purple_500
 import com.example.sensorevaluation.databinding.ActivityMainBinding
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.XAxis
+
 import java.io.File
 import java.security.KeyStore
 
@@ -143,17 +146,17 @@ class MainActivity : AppCompatActivity()  {
         val linedataset = LineDataSet(lineentry, nameString[counts])
 
         var colorselect = arrayOf(R.color.darkRed, R.color.black, R.color.grey)
-        if ((counts+1) % 3 == 0){
+        if ((counts + 1 )== 3 || (counts + 1 )== 6){
             linedataset.color = resources.getColor(colorselect[2])
-        }else if((count+1) % 2 == 0){
+        }else if((counts + 1 )== 2 || (counts + 1 )== 5){
             linedataset.color = resources.getColor(colorselect[1])
         }else{
             linedataset.color = resources.getColor(colorselect[0])
         }
-        //linedataset.color = resources.getColor(R.color.darkRed)
-
+        linedataset.setDrawCircles(false)
 
         linedatas.add(linedataset)
+
 
         """val data = LineData(linedataset)
         if (counts < 3 ){
@@ -174,7 +177,9 @@ class MainActivity : AppCompatActivity()  {
 
         lineChart.data = data
         lineChart.setBackgroundColor(resources.getColor(R.color.greishTrans))
-        lineChart.extraRightOffset
+        lineChart.setGridBackgroundColor(R.color.grey)
+        lineChart.setNoDataText("Data not yet available")
+        lineChart.setNoDataTextColor(R.color.grey)
         lineChart.animateXY(1000, 3000)
 
         data = LineData(linedatas.get(3),linedatas.get(4), linedatas.get(5))
