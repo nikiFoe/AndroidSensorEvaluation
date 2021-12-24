@@ -18,6 +18,9 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
+import android.widget.ProgressBar
+import android.view.View
+import com.example.sensorevaluation.R.id.lineChartzacc
 
 import java.io.File
 import java.security.KeyStore
@@ -44,11 +47,13 @@ class MainActivity : AppCompatActivity()  {
     private lateinit var lineChartygyro: LineChart
     private lateinit var lineChartzgyro: LineChart
     private lateinit var linedatas : ArrayList<LineDataSet>
+    private var progressBar: ProgressBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        progressBar = findViewById<ProgressBar>(R.id.progressBar3) as ProgressBar
 
         binding.Start.setOnClickListener { startMeasurment() }
         binding.Stop.setOnClickListener { stopMeasurment() }
@@ -63,13 +68,17 @@ class MainActivity : AppCompatActivity()  {
         lineChartxgyro = findViewById(R.id.lineChartgyrox)
         lineChartygyro = findViewById(R.id.lineChartgyroy)
         lineChartzgyro = findViewById(R.id.lineChartgyroz)
+
+
     }
 
     private fun startMeasurment() {
+        progressBar?.visibility = View.VISIBLE
         startService(serviceIntent)
     }
 
     private fun stopMeasurment() {
+        progressBar?.visibility = View.INVISIBLE
         stopService(serviceIntent)
     }
 
